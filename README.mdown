@@ -1,0 +1,3 @@
+# About
+
+Very simple _experimental_ CMS built with CouchDB and Express.

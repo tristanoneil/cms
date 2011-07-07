@@ -1,0 +1,11 @@
+{
+  "name": "cms",
+  "description": "Basic express based CMS",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+      "express": "2.x",
+      "cradle": "0.5.x"
+  },
+  "engines": { "node": ">= 0.4.9" }
+}

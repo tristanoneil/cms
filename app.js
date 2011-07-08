@@ -1,8 +1,6 @@
 var express = require('express'),
-    cradle = require('cradle'),
-    form = require('./form.js');
-
-var db = new(cradle.Connection)('http://tristanoneil.iriscouch.com').database('cms');
+    model = require('./lib/model.js'),
+    form = require('./lib/form.js');
 
 var app = express.createServer(
   express.bodyParser(),
@@ -10,8 +8,16 @@ var app = express.createServer(
   express.static(__dirname + '/public')
 );
 
+app.set('view engine', 'ejs');
+
 app.get('/', function(req, res){
 
+});
+
+app.get('/:content', function(req, res){
+  model.getAll(req.params.content, function(error, data){
+    res.render(req.params.content + '/index', { data: data });
+  });
 });
 
 app.get('/new/:content', function(req, res){

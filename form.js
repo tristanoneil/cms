@@ -7,18 +7,19 @@ exports.generateForm = function(content){
   var form = '<form name="' + content + '" action="/create/' + content + '" method="POST">';
 
   for(field in schema) {
-    form += generateField(field, schema[field]);
+    form += generateField(field, schema[field].widget, schema[field].required);
   }
 
   form += '<input type="submit"></form>';
   return form;
 }
 
-function generateField(field, type){
-  var html = '<div class="field">';
+function generateField(field, widget, required){
+  var html = required ? '<div class="field required">' : '<div class="field">';
+
   html += '<label for="' + field + '">' + capitalizeLabel(field) + '</label><br/>';
 
-  switch(type)
+  switch(widget)
   {
     case "TextField":
       html += '<input type="text" name="' + field + '">';

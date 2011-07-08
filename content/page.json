@@ -1,4 +1,14 @@
 {
-  "title": "TextField",
-  "body": "TextArea"
+  "title": {
+    "widget": "TextField",
+    "required": true
+  },
+  "email": {
+    "widget": "TextField",
+    "type": "Email"
+  },
+  "body": {
+    "widget": "TextArea",
+    "required": true
+  }
 }

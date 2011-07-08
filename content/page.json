@@ -7,6 +7,10 @@
     "widget": "TextField",
     "type": "Email"
   },
+  "flavor": {
+    "widget": "Dropdown",
+    "options": ["chocolate", "vanilla", "banana", "strawberry"]
+  },
   "body": {
     "widget": "TextArea",
     "required": true

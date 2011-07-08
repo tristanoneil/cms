@@ -7,14 +7,14 @@ exports.generateForm = function(content){
   var form = '<form name="' + content + '" action="/create/' + content + '" method="POST">';
 
   for(field in schema) {
-    form += generateField(field, schema[field].widget, schema[field].required);
+    form += generateField(field, schema[field].widget, schema[field].required, schema[field].options);
   }
 
   form += '<input type="submit"></form>';
   return form;
 }
 
-function generateField(field, widget, required){
+function generateField(field, widget, required, options){
   var html = required ? '<div class="field required">' : '<div class="field">';
 
   html += '<label for="' + field + '">' + capitalizeLabel(field) + '</label><br/>';
@@ -31,6 +31,29 @@ function generateField(field, widget, required){
 
     case "Boolean":
       html += '<input type="checkbox" name="' + field + '">';
+      break;
+
+    case "RadioButton":
+      for(option in options) {
+        html += capitalizeLabel(options[option]);
+        html += '<input type="radio" name="' + field + '" value="' + options[option] + '">';
+      }
+      break;
+
+    case "Checkbox":
+      for(option in options) {
+        html += capitalizeLabel(options[option]);
+        html += '<input type="checkbox" name="' + field + '" value="' + options[option] + '">';
+      }
+      break;
+
+    case "Dropdown":
+      html += '<select name="' + field + '">';
+      for(option in options) {
+        html += '<option value="' + options[option] + '">' + capitalizeLabel(options[option]) + '</option>';
+      }
+      html += '</select>'
+      break;
   }
 
   html += '</div>';

@@ -6,7 +6,7 @@
   "dependencies": {
       "express": "2.x",
       "cradle": "0.5.x",
-      "ejs": "0.4.x"
+      "jade": "0.9.x"
   },
   "engines": { "node": ">= 0.4.9" }
 }

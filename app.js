@@ -8,10 +8,10 @@ var app = express.createServer(
   express.static(__dirname + '/public')
 );
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 
 app.get('/', function(req, res){
-
+  res.render('index');
 });
 
 app.get('/:content', function(req, res){

@@ -34,5 +34,8 @@ app.post('/create/:content', function(req, res){
   res.redirect('/new/' + req.params.content);
 });
 
-app.listen(3000);
-console.log('App started at http://localhost:3000');
+var port = process.env.PORT || 3000;
+
+app.listen(port, function(){
+  console.log("App started on port " + port);
+});

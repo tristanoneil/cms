@@ -26,9 +26,9 @@ app.get('/new/:content', function(req, res){
 });
 
 app.post('/create/:content', function(req, res){
-  db.save(req.body, function(err, res){
-    if(err){
-      // Store error in session
+  model.save(req.body, function(error, data){
+    if(error) {
+      // Save error in session
     }
   });
   res.redirect('/new/' + req.params.content);

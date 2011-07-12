@@ -25,7 +25,7 @@ app.get('/:context', function(req, res){
 });
 
 app.get('/new/:context', function(req, res){
-  var html = form.generateForm(req.params.context);
+  var html = form.generateForm(req.params.context, req.session.form);
   res.render('new', { html: html });
 });
 

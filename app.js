@@ -1,12 +1,16 @@
 var express = require('express'),
     model = require('./lib/model.js'),
+    route = require('./lib/route.js'),
     form = require('./lib/form.js');
 
 var app = express.createServer(
   express.bodyParser(),
   express.cookieParser(),
+  express.session({ secret: "keyboard cat" }),
   express.static(__dirname + '/public')
 );
+
+app.use(express.favicon());
 
 app.set('view engine', 'jade');
 
@@ -14,24 +18,27 @@ app.get('/', function(req, res){
   res.render('index');
 });
 
-app.get('/:content', function(req, res){
-  model.getAll(req.params.content, function(error, data){
-    res.render(req.params.content + '/index', { data: data });
+app.get('/:context', function(req, res){
+  model.getAll(req.params.context, function(error, data){
+    res.render(req.params.context + '/index', { data: data });
   });
 });
 
-app.get('/new/:content', function(req, res){
-  var c = form.generateForm(req.params.content);
-  res.send(c);
+app.get('/new/:context', function(req, res){
+  var html = form.generateForm(req.params.context);
+  res.render('new', { html: html });
 });
 
-app.post('/create/:content', function(req, res){
-  model.save(req.body, function(error, data){
+app.post('/create/:context', function(req, res){
+  model.save(req.body, function(error, response){
     if(error) {
-      // Save error in session
+      req.session.form = req.body;
+      res.redirect('/new/' + req.params.context);
+    }
+    else {
+      res.redirect(route.index(req.params.context));
     }
   });
-  res.redirect('/new/' + req.params.content);
 });
 
 var port = process.env.PORT || 3000;

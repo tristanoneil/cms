@@ -26,13 +26,14 @@ app.get('/:context', function(req, res){
 
 app.get('/new/:context', function(req, res){
   var html = form.generateForm(req.params.context, req.session.form);
-  res.render('new', { html: html });
+  res.render('new', { html: html, flash: req.flash('error') });
 });
 
 app.post('/create/:context', function(req, res){
   model.save(req.body, function(error, response){
     if(error) {
       req.session.form = req.body;
+      req.flash('error', error.reason);
       res.redirect('/new/' + req.params.context);
     }
     else {

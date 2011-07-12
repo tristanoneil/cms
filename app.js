@@ -20,7 +20,9 @@ app.get('/', function(req, res){
 
 app.get('/:context', function(req, res){
   model.getAll(req.params.context, function(error, data){
-    res.render(req.params.context + '/index', { data: data });
+    var locals = {};
+    locals[req.params.context] = data;
+    res.render(req.params.context + '/index', locals);
   });
 });
 

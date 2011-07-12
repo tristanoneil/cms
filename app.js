@@ -22,7 +22,7 @@ app.get('/:context', function(req, res){
   model.getAll(req.params.context, function(error, data){
     var locals = {};
     locals[req.params.context] = data;
-    res.render(helper.pluralize(req.params.context) + '/index', locals);
+    res.render(req.params.context, locals);
   });
 });
 

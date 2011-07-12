@@ -9,7 +9,7 @@
   },
   "flavor": {
     "widget": "Dropdown",
-    "options": ["chocolate", "vanilla", "banana", "strawberry"]
+    "options": ["Chocolate", "Vanilla", "Banana", "Strawberry"]
   },
   "body": {
     "widget": "TextArea",

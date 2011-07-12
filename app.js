@@ -39,8 +39,16 @@ app.post('/create/:context', function(req, res){
       res.redirect('/new/' + req.params.context);
     }
     else {
-      res.redirect(route.index(req.params.context));
+      res.redirect(helper.pluralize(req.params.context));
     }
+  });
+});
+
+app.get('/:context/:id', function(req, res){
+  model.get(req.params.id, function(error, data){
+    var locals = {};
+    locals[req.params.context] = data;
+    res.render(helper.pluralize(req.params.context) + '/show', locals);
   });
 });
 

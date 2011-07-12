@@ -2,5 +2,10 @@
 html(lang="en")
   head
     title CMS
+    link(rel="stylesheet", href="/style.css")
   body
-    !{body}
+    #wrapper
+      - if(flash != '')
+        #flash= flash
+      #container
+        !{body}

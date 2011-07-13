@@ -26,12 +26,12 @@ app.get('/:context', function(req, res){
   });
 });
 
-app.get('/new/:context', function(req, res){
+app.get('/:context/new', function(req, res){
   var html = form.generateForm(req.params.context, req.session.form);
   res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });
 });
 
-app.post('/create/:context', function(req, res){
+app.post('/:context', function(req, res){
   model.save(req.body, function(error, response){
     if(error) {
       req.session.form = req.body;
@@ -39,16 +39,21 @@ app.post('/create/:context', function(req, res){
       res.redirect('/new/' + req.params.context);
     }
     else {
-      res.redirect(helper.pluralize(req.params.context));
+      res.redirect(req.params.context);
     }
   });
 });
 
 app.get('/:context/:id', function(req, res){
   model.get(req.params.id, function(error, data){
-    var locals = {};
-    locals[req.params.context] = data;
-    res.render(helper.pluralize(req.params.context) + '/show', locals);
+    if(error) {
+      res.send(404);
+    }
+    else {
+      var locals = {};
+      locals[data.content] = data;
+      res.render(req.params.context + '/show', locals);
+    }
   });
 });
 

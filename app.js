@@ -28,7 +28,7 @@ app.get('/:context', function(req, res){
 
 app.get('/new/:context', function(req, res){
   var html = form.generateForm(req.params.context, req.session.form);
-  res.render('new', { html: html, flash: req.flash('error') });
+  res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });
 });
 
 app.post('/create/:context', function(req, res){

@@ -1,6 +1,6 @@
 var express = require('express'),
     model = require('./lib/model.js'),
-    helper = require('./lib/helper.js'),
+    inflection = require('./lib/inflection.js'),
     form = require('./lib/form.js');
 
 var app = express.createServer(

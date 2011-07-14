@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+#header {
+  background: #f4f4f4;
+  box-shadow: 2px 2px #333;
+  font-family: Helvetica, Arial, Sans-serif;
+  padding: 10px;
+}

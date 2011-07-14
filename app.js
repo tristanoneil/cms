@@ -1,5 +1,6 @@
 var express = require('express'),
     model = require('./lib/model.js'),
+    editor = require('./lib/editor.js'),
     inflection = require('./lib/inflection.js'),
     form = require('./lib/form.js');
 
@@ -24,6 +25,11 @@ app.get('/:context', function(req, res){
     locals[req.params.context] = data;
     res.render(req.params.context, locals);
   });
+});
+
+app.get('/:context/edit', function(req, res){
+  var file = editor.open(req.params.context);
+  res.render('admin/editor', { file: file, layout: false });
 });
 
 app.get('/:context/new', function(req, res){

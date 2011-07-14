@@ -1,0 +1,25 @@
+!!! 5
+html(lang="en")
+  head
+    title CMS
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
+    script(src="/js/lib/codemirror/lib/codemirror.js")
+    script(src="/js/lib/codemirror/mode/javascript.js")
+    link(rel="stylesheet", href="/js/lib/codemirror/lib/codemirror.css")
+    link(rel="stylesheet", href="/js/lib/codemirror/theme/default.css")
+    link(rel="stylesheet", href="/editor.css")
+    script(type="text/javascript")
+      $(document).ready(function() {
+        var myCodeMirror = CodeMirror(document.body, {
+          value: $('#content').val(),
+          mode: {name: "javascript", json: true},
+          tabMode: "indent",
+          matchBrackets: true,
+          theme: "default",
+          lineNumbers: true
+        });
+      });
+  body
+    #header
+      h3= "Content Editor"
+    input(type="hidden", id="content", value=file)

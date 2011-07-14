@@ -44,6 +44,37 @@ app.post('/:context', function(req, res){
   });
 });
 
+app.get('/:context/:id/edit', function(req, res){
+    if(req.session.form) {
+      var html = form.generateForm(req.params.context, req.session.form, req.params.id);
+      res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });
+    }
+    else {
+      model.get(req.params.id, function(error, data){
+        if(error) {
+          res.send(404);
+        }
+        else {
+          var html = form.generateForm(req.params.context, data, data._id);
+          res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });
+        }
+      });
+    }
+});
+
+app.post('/:context/:id', function(req, res){
+  model.update(req.params.id, req.body, function(error, response){
+    if(error) {
+      req.session.form = req.body;
+      req.flash('error', error.reason);
+      res.redirect(req.params.context + '/' + req.params.id + '/edit');
+    }
+    else {
+      res.redirect(req.params.context + '/' + req.params.id);
+    }
+  });
+});
+
 app.get('/:context/:id', function(req, res){
   model.get(req.params.id, function(error, data){
     if(error) {

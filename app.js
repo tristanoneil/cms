@@ -45,8 +45,14 @@ app.post('/:content', function(req, res){
 });
 
 app.get('/:context/new', function(req, res){
-  var html = form.generateForm(req.params.context, req.session.form);
-  res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });
+  form.generateForm(req.params.context, req.session.form, null, function(error, form){
+    if(error) {
+      res.send(404);
+    }
+    else {
+      res.render('admin/new', { form: form, flash: req.flash('error'), layout: 'admin/layout' });
+    }
+  });
 });
 
 app.post('/:context', function(req, res){
@@ -64,8 +70,14 @@ app.post('/:context', function(req, res){
 
 app.get('/:context/:id/edit', function(req, res){
     if(req.session.form) {
-      var html = form.generateForm(req.params.context, req.session.form, req.params.id);
-      res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });
+      form.generateForm(req.params.context, req.session.form, req.params.id, function(error, form){
+        if(error) {
+          res.send(404);
+        }
+        else {
+          res.render('admin/new', { form: form, flash: req.flash('error'), layout: 'admin/layout' });
+        }
+      });
     }
     else {
       model.get(req.params.id, function(error, data){
@@ -73,8 +85,14 @@ app.get('/:context/:id/edit', function(req, res){
           res.send(404);
         }
         else {
-          var html = form.generateForm(req.params.context, data, data._id);
-          res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });
+          form.generateForm(req.params.context, data, data._id, function(error, form){
+            if(error) {
+              res.send(404);
+            }
+            else {
+              res.render('admin/new', { form: form, flash: req.flash('error'), layout: 'admin/layout' });
+            }
+          });
         }
       });
     }

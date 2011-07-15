@@ -177,6 +177,7 @@ h2 {
 #reference pre {
   background: #f4f4f4;
   border: solid 1px #e5e5e5;
+  overflow: auto;
   padding: 10px;
 }
 

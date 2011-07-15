@@ -22,12 +22,12 @@ app.get('/:context', function(req, res){
   });
 });
 
-app.get('/:context/edit', function(req, res){
-  var file = editor.open(req.params.context);
-  res.render('admin/editor', { file: file, layout: false });
+app.get('/:content/edit', function(req, res){
+  var file = editor.open(req.params.content);
+  res.render('admin/editor', { content: req.params.content, file: file, layout: false });
 });
 
-app.post('/:context', function(req, res){
+app.post('/:content', function(req, res){
   editor.save(req.params.context, req.body.content, function(error){
     if(error) {
       res.send(error);

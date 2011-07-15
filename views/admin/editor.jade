@@ -11,49 +11,49 @@ html(lang="en")
   body
     #header
       .title
-        h2= "Content Editor"
+        h2 Editing #{content}
       .menu
-        .reference.gray-button= "Reference"
-        .save.green-button= "Save"
+        .reference.gray-button Reference
+        .save.green-button Save
       .clear
     #reference
-      h4= "TextField"
-      p= "Text input field."
+      h4 TextField
+      p Text input field.
       pre
         "title": {
           "widget": "TextField",
           "required": true
         }
-      h4= "TextArea"
-      p= "Textarea field."
+      h4 TextArea
+      p Textarea field.
       pre
         "body": {
           "widget": "TextArea",
           "required": true
         }
-      h4= "Dropdown"
-      p= "Dropdown field."
+      h4 Dropdown
+      p Dropdown field.
       pre
         "flavor": {
           "widget": "Dropdown",
           "options": ["Chocolate", "Vanilla", "Banana"]
         }
-      h4= "RadioButtons"
-      p= "A set of radio buttons."
+      h4 RadioButtons
+      p A set of radio buttons.
       pre
         "flavor": {
           "widget": "RadioButtons",
           "options": ["Chocolate", "Vanilla", "Banana"]
         }
-      h4= "CheckBoxes"
-      p= "A set of check boxes."
+      h4 CheckBoxes
+      p A set of check boxes.
       pre
         "flavors": {
           "widget": "CheckBoxes",
           "options": ["Chocolate", "Vanilla", "Banana"]
         }
-      h4= "Boolean"
-      p= "A single checkbox."
+      h4 Boolean
+      p A single checkbox.
       pre
         "published": {
           "widget": "Boolean",

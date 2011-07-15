@@ -1,7 +1,6 @@
 var express = require('express'),
     model = require('./lib/model.js'),
     editor = require('./lib/editor.js'),
-    inflection = require('./lib/inflection.js'),
     form = require('./lib/form.js');
 
 var app = express.createServer(
@@ -14,10 +13,6 @@ var app = express.createServer(
 app.use(express.favicon());
 
 app.set('view engine', 'jade');
-
-app.get('/', function(req, res){
-  res.render('index');
-});
 
 app.get('/:context', function(req, res){
   model.getAll(req.params.context, function(error, data){

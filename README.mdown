@@ -11,7 +11,7 @@ Very simple _experimental_ CMS built with [CouchDB](http://couchdb.apache.org) a
 ### Install
 
 ```bash
-git checkout git@github.com:tristanoneil/cms.git
+git clone git@github.com:tristanoneil/cms.git
 cd cms
 npm install
 node app.js

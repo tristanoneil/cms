@@ -34,7 +34,7 @@ app.get('/:content/edit', function(req, res){
 });
 
 app.post('/:content', function(req, res){
-  schema.save(req.params.context, req.body.content, function(error){
+  schema.save(req.params.content, req.body.content, function(error){
     if(error) {
       res.send(error);
     }

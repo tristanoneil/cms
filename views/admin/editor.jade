@@ -31,4 +31,32 @@ html(lang="en")
           "widget": "TextArea",
           "required": true
         }
+      h4= "Dropdown"
+      p= "Dropdown field."
+      pre
+        "flavor": {
+          "widget": "Dropdown",
+          "options": ["Chocolate", "Vanilla", "Banana"]
+        }
+      h4= "RadioButtons"
+      p= "A set of radio buttons."
+      pre
+        "flavor": {
+          "widget": "RadioButtons",
+          "options": ["Chocolate", "Vanilla", "Banana"]
+        }
+      h4= "CheckBoxes"
+      p= "A set of check boxes."
+      pre
+        "flavors": {
+          "widget": "CheckBoxes",
+          "options": ["Chocolate", "Vanilla", "Banana"]
+        }
+      h4= "Boolean"
+      p= "A single checkbox."
+      pre
+        "published": {
+          "widget": "Boolean",
+          "required": true
+        }
     input(type="hidden", id="content", value=file)

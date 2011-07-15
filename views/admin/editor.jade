@@ -5,21 +5,30 @@ html(lang="en")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
     script(src="/js/lib/codemirror/lib/codemirror.js")
     script(src="/js/lib/codemirror/mode/javascript.js")
+    script(src="/js/editor.js")
     link(rel="stylesheet", href="/js/lib/codemirror/lib/codemirror.css")
-    link(rel="stylesheet", href="/js/lib/codemirror/theme/default.css")
     link(rel="stylesheet", href="/editor.css")
-    script(type="text/javascript")
-      $(document).ready(function() {
-        var myCodeMirror = CodeMirror(document.body, {
-          value: $('#content').val(),
-          mode: {name: "javascript", json: true},
-          tabMode: "indent",
-          matchBrackets: true,
-          theme: "default",
-          lineNumbers: true
-        });
-      });
   body
     #header
-      h3= "Content Editor"
+      .title
+        h2= "Content Editor"
+      .menu
+        .reference.gray-button= "Reference"
+        .save.green-button= "Save"
+      .clear
+    #reference
+      h4= "TextField"
+      p= "Text input field."
+      pre
+        "title": {
+          "widget": "TextField",
+          "required": true
+        }
+      h4= "TextArea"
+      p= "Textarea field."
+      pre
+        "body": {
+          "widget": "TextArea",
+          "required": true
+        }
     input(type="hidden", id="content", value=file)

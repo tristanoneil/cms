@@ -32,6 +32,17 @@ app.get('/:context/edit', function(req, res){
   res.render('admin/editor', { file: file, layout: false });
 });
 
+app.post('/:context', function(req, res){
+  editor.save(req.params.context, req.body.content, function(error){
+    if(error) {
+      res.send(error);
+    }
+    else {
+      res.send('Content saved.');
+    }
+  });
+});
+
 app.get('/:context/new', function(req, res){
   var html = form.generateForm(req.params.context, req.session.form);
   res.render('admin/new', { html: html, flash: req.flash('error'), layout: 'admin/layout' });

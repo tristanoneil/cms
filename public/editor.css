@@ -6,6 +6,20 @@ h2 {
   margin: 0;
 }
 
+#notifications {
+  background: #7fbf4d;
+  bottom: 0;
+  color: #fff;
+  display: none;
+  font-family: Helvetica, Arial, Sans-serif;
+  font-size: 20px;
+  padding: 10px 0 10px 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+
 #header {
   background: #f4f4f4;
   border-bottom: solid 5px #e5e5e5;

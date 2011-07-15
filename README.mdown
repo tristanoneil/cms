@@ -1,3 +1,18 @@
 # About
 
-Very simple _experimental_ CMS built with CouchDB and Express.
+Very simple _experimental_ CMS built with [CouchDB](http://couchdb.apache.org) and [Express](http://expressjs.com).
+
+### Dependancies
+
+- [node.js](http://nodejs.org)
+- [npm](http://npmjs.org)
+- [couchdb](http://couchdb.apache.org)
+
+### Install
+
+```bash
+git checkout git@github.com:tristanoneil/cms.git
+cd cms
+npm install
+node app.js
+```

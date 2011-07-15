@@ -23,8 +23,14 @@ app.get('/:context', function(req, res){
 });
 
 app.get('/:content/edit', function(req, res){
-  var file = schema.open(req.params.content);
-  res.render('admin/editor', { content: req.params.content, file: file, layout: false });
+  schema.open(req.params.content, function(error, file){
+    if(error) {
+      res.send(404);
+    }
+    else {
+      res.render('admin/editor', { content: req.params.content, file: file, layout: false });
+    }
+  });
 });
 
 app.post('/:content', function(req, res){

@@ -1,6 +1,6 @@
 var express = require('express'),
     model = require('./lib/model.js'),
-    editor = require('./lib/editor.js'),
+    schema = require('./lib/schema.js'),
     form = require('./lib/form.js');
 
 var app = express.createServer(
@@ -23,12 +23,12 @@ app.get('/:context', function(req, res){
 });
 
 app.get('/:content/edit', function(req, res){
-  var file = editor.open(req.params.content);
+  var file = schema.open(req.params.content);
   res.render('admin/editor', { content: req.params.content, file: file, layout: false });
 });
 
 app.post('/:content', function(req, res){
-  editor.save(req.params.context, req.body.content, function(error){
+  schema.save(req.params.context, req.body.content, function(error){
     if(error) {
       res.send(error);
     }
